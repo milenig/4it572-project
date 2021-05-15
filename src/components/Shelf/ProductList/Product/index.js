@@ -34,7 +34,7 @@ const Product = ({ product, addProduct }) => {
       data-sku={product.sku}
     >
       {product.isFreeShipping && (
-        <div className="shelf-stopper">Another server</div>
+        <div className="shelf-stopper">Different label</div>
       )}
       <Thumb
         classes="shelf-item__thumb"
@@ -57,10 +57,7 @@ const Product = ({ product, addProduct }) => {
 
 Product.propTypes = {
   product: PropTypes.object.isRequired,
-  addProduct: PropTypes.func.isRequired
+  addProduct: PropTypes.func.isRequired,
 };
 
-export default connect(
-  null,
-  { addProduct }
-)(Product);
+export default connect(null, { addProduct })(Product);
