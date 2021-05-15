@@ -74,7 +74,7 @@
     - name: Terminate previous instances
       ec2:
         region: us-east-1
-        state: 'absent'
+        state: absent
         instance_ids: '{{ item.instance_id }}'
         aws_access_key: ASIAQFYTMD4WOBTULPWK
         aws_secret_key: I96/qzHcGEh5lypS7Zi1KQ2srMoq1qA3OIxh+aE3
