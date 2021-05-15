@@ -1,6 +1,9 @@
 vse: &vse
   docker:
     - image: circleci/node:8.11.3
+ansible: &ansible
+  docker:
+    - image: circleci/python:3.8.1
 
 version: 2.1
 jobs:
@@ -16,12 +19,16 @@ jobs:
           paths:
             - .
   deploy:
-    <<: *vse
+    <<: *ansible
     steps:
       - attach_workspace:
           at: .
+      - run: pip 3 install ansible boto boto3
+      - run: chmod 400 ./ansible/devops.pem
       - run:
-          command: ./node_modules/.bin/firebase deploy --token "$FIREBASE_TOKEN"
+          command: ansible-playbook ./ansible/ec2_deploy.yml --user ubuntu --key-file ./ansible/devops.pem
+          environment:
+            ANSIBLE_HOST_KEY_CHECKING: False
 
 workflows:
   version: 2.1
