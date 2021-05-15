@@ -1,2 +1,2 @@
 # 4it572-project
-Semestralni projekt
+Semestralni projekt - 4IT572
