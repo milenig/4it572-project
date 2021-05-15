@@ -23,7 +23,7 @@ jobs:
     steps:
       - attach_workspace:
           at: .
-      - run: pip 3 install ansible boto boto3
+      - run: python -m pip install --user boto boto3 ansible
       - run: chmod 400 ./ansible/devops.pem
       - run:
           command: ansible-playbook ./ansible/ec2_deploy.yml --user ubuntu --key-file ./ansible/devops.pem
